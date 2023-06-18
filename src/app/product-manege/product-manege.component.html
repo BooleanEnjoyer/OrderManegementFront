@@ -1,0 +1,60 @@
+<div class="searchingContent">
+  <div class="sort">
+    <label for="sortSelect">Posortuj po:</label>
+    <select id="sortSelect" [(ngModel)]="selectedSortOption" (change)="changePage(0)">
+      <option value="none" >Brak</option>
+      <option value="name">Nazwa</option>
+      <option value="price">Cena</option>
+    </select>
+    <div class="sort-order">
+      <label for="sortOrderSelect"></label>
+      <select id="sortOrderSelect" [(ngModel)]="selectedSortOrder" (change)="changePage(0)">
+        <option value="asc">Rosnąco</option>
+        <option value="desc">Malejąco</option>
+      </select>
+    </div>
+  </div>
+  <div class="search">
+    <button (click)="openAddForm()">Dodaj produkt</button>
+    <input type="text" [(ngModel)]="searchTerm" placeholder="Wyszukaj produkty" class="searchPlace">
+    <button (click)="search()">Szukaj</button>
+  </div>
+</div>
+
+<div class="container">
+  <ng-container *ngFor="let product of displayedProducts">
+    <div class = "item">
+      <div class = "productData">
+        {{ product.name }}
+        {{ product.price }} zł
+      </div>
+      <div class = "editProduct">
+        <button (click)="openUpdateForm(product)">Edytuj produkt</button>
+        <button (click)="deleteProduct(product.id)">Usuń produkt</button>
+      </div>
+    </div>
+  </ng-container>
+</div>
+
+<div class="navigation">
+  <div class="page-item" [class.disabled]="currentPage === 0">
+    <button class="page-link" (click)="changePage(currentPage - 1)" [disabled]="currentPage === 0">Poprzednia</button>
+  </div>
+  <div class="page-item">
+    <button class="page-link">{{ currentPage + 1 }}</button>
+  </div>
+  <div class="page-item" [class.disabled]="currentPage === totalPages - 1">
+    <button class="page-link" (click)="changePage(currentPage + 1)" [disabled]="currentPage === totalPages - 1">Następna</button>
+  </div>
+</div>
+
+<app-product-form *ngIf="isFormOpen"
+                  [isInUpdateMode]="isUpdating"
+                  [productId]="productId"
+                  [productName] = "productName"
+                  [productPrice] = "productPrice"
+                  (formSubmitted)="handleFormSubmitted()"
+                  (formClosed)="closeForm()">
+</app-product-form>
+
+<div class="overlay" *ngIf="isFormOpen"></div>

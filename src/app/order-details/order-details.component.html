@@ -1,0 +1,16 @@
+<div class="popup-overlay">
+  <div class="popup-content">
+    <h2>Detale zamówienia</h2>
+    <p>Id: {{ id }}</p>
+    <p>Status: {{ status }}</p>
+    <p>Kod zamówienia: {{ trackingCode }}</p>
+    <p>Adres początkowy: {{startingCity}}, {{startingStreet}} {{startingHouseNumber}}, {{startingZipCode}}</p>
+    <p>Adres docelowy: {{targetCity}}, {{targetStreet}} {{targetHouseNumber}}, {{targetZipCode}}</p>
+    <p>Produkt: {{productName}} {{productPrice}}</p>
+    <p>Data stworzenia: {{ dateCreated }}</p>
+    <p>Ostatnia aktualizacjia: {{ lastUpdated }}</p>
+    <div class="buttons">
+      <button type="button" (click)="closeForm()">Zamknij</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,29 @@
+#slogan {
+  text-align: center;
+  font-size: 40px;
+}
+
+.buttons {
+  display: grid;
+  margin-top: min(5vh, 40%);
+  grid-template-rows: repeat(3, minmax(0, 1fr));
+  grid-auto-columns: minmax(50%, auto);
+  row-gap: 30px;
+  justify-content: center;
+  margin-bottom: 12vh;
+}
+
+.buttons button {
+  display: grid;
+  min-height: 100px;
+  height: auto;
+  background-color: #5F66D6;
+  color: white;
+  font-size: 150%;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 5px;
+
+}

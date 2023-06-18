@@ -1,0 +1,21 @@
+<div class="popup-overlay">
+  <div class="popup-content">
+    <h2>Edytuj zamówienie</h2>
+    <form (submit)="submitForm()">
+      <div class="fields">
+        <label for="status">Status:</label>
+        <select id="status" [(ngModel)]="status">
+          <option value="PLACED">Złożone</option>
+          <option value="ASSEMBLED">Skompletowane</option>
+          <option value="ON_THE_WAY">W drodze</option>
+          <option value="IN_DESTINATION">Dostarczone</option>
+          <option value="COMPLETED">Zakończone</option>
+        </select>
+      </div>
+      <div class="buttons">
+        <button type="submit">Zaktualizuj</button>
+        <button type="button" (click)="closeForm()">Anuluj</button>
+      </div>
+    </form>
+  </div>
+</div>

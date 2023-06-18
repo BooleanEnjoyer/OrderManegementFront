@@ -1,0 +1,41 @@
+router-outlet {
+  position: fixed;
+}
+
+footer ul li a{
+  color:#fff
+}
+
+.footerStyle{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+footer {
+  display: grid;
+  grid-area: footer;
+  bottom: 0;
+  background: #ABAEE3;
+  color: white;
+  min-height: 30px;
+  width: 100%;
+  text-align: center;
+  left:0;
+}
+
+footer ul li{
+  display:inline-block;
+  font-size:14px;
+  padding:10px 20px
+}
+
+.mainContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+}
+
+

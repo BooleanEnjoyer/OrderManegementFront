@@ -1,0 +1,65 @@
+<div class="popup-overlay">
+  <div class="popup-content">
+    <h4>Dodaj zamówienie</h4>
+    <form [formGroup]="formGroup" (submit)="submitForm()">
+      <div class="fields">
+        <p>Twoj produkt: {{productName}}, {{productPrice}} zł </p>
+        <p>Początkowy adres: </p>
+        <label for="startingCity">miasto</label>
+        <input type="text" id="startingCity" formControlName="startingCity" [value]="startingCity" (input)="startingCity = $any($event.target).value" required >
+        <div *ngIf="startingCityControl?.invalid && startingCityControl?.touched">
+          <p class="error-message">Początkowe miasto jest wymagane.</p>
+        </div>
+
+        <label for="startingStreet">ulica</label>
+        <input type="text" id="startingStreet" formControlName="startingStreet" [value]="startingStreet" (input)="startingStreet = $any($event.target).value" required >
+        <div *ngIf="startingStreetControl?.invalid && startingStreetControl?.touched">
+          <p class="error-message">Początkowa ulica jest wymagana.</p>
+        </div>
+
+        <label for="startingHouseNumber">number domu</label>
+        <input type="number" id="startingHouseNumber" formControlName="startingHouseNumber" [value]="startingHouseNumber" (input)="startingHouseNumber = $any($event.target).valueAsNumber" required >
+        <div *ngIf="startingHouseNumberControl?.invalid && startingHouseNumberControl?.touched">
+          <p class="error-message">Początkowy numer domu jest wymagany.</p>
+        </div>
+
+        <label for="startingZipCode">kod pocztowy:</label>
+        <input type="text" id="startingZipCode" formControlName="startingZipCode" [value]="startingZipCode" (input)="startingZipCode =$any($event.target).value" required>
+        <div *ngIf="startingZipCodeControl?.invalid && startingZipCodeControl?.touched">
+          <p class="error-message">Początkowy kod pocztowy jest wymagany w poprawnym formacie.</p>
+        </div>
+
+        <p>Docelowy adres: </p>
+        <label for="targetCity">miasto</label>
+        <input type="text" id="targetCity" formControlName="targetCity" [value]="targetCity" (input)="targetCity = $any($event.target).value" required >
+        <div *ngIf="targetCityControl?.invalid && targetCityControl?.touched">
+          <p class="error-message">Docelowe miasto jest wymagane.</p>
+        </div>
+
+        <label for="targetStreet">ulica</label>
+        <input type="text" id="targetStreet" formControlName="targetStreet" [value]="targetHouseNumber" (input)="targetHouseNumber = $any($event.target).valueAsNumber" required >
+        <div *ngIf="targetStreetControl?.invalid && targetStreetControl?.touched">
+          <p class="error-message">Docelowa ulica jest wymagana.</p>
+        </div>
+
+        <label for="targetHouseNumber">number domu</label>
+        <input type="number" id="targetHouseNumber" formControlName="targetHouseNumber" [value]="targetStreet" (input)="targetStreet = $any($event.target).value" required >
+        <div *ngIf="targetHouseNumberControl?.invalid && targetHouseNumberControl?.touched">
+          <p class="error-message">Docelowy numer domu jest wymagany.</p>
+        </div>
+
+        <label for="targetZipCode">kod pocztowy:</label>
+        <input type="text" id="targetZipCode" formControlName="targetZipCode" [value]="targetZipCode" (input)="targetZipCode =$any($event.target).value" required>
+        <div *ngIf="targetZipCodeControl?.invalid && targetZipCodeControl?.touched">
+          <p class="error-message">Docelowy kod pocztowy jest wymagany w poprawnym formacie.</p>
+        </div>
+      </div>
+      <div class="buttons">
+        <button type="submit">Dodaj</button>
+        <button type="button" (click)="closeForm()">Anuluj</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+

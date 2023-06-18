@@ -1,0 +1,79 @@
+<div class="searchingContent">
+  <div class="sort">
+    <label for="sortSelect">Posortuj po:</label>
+    <select id="sortSelect" [(ngModel)]="selectedSortOption" (change)="changePage(0)">
+      <option value="none" >Brak</option>
+      <option value="trackingCode">Numerze zamówienia</option>
+      <option value="status">Statusie</option>
+    </select>
+    <div class="sort-order">
+      <label for="sortOrderSelect"></label>
+      <select id="sortOrderSelect" [(ngModel)]="selectedSortOrder" (change)="changePage(0)">
+        <option value="asc">Rosnąco</option>
+        <option value="desc">Malejąco</option>
+      </select>
+    </div>
+  </div>
+  <div class="search">
+      <div class="searchLabel">
+        <div>
+          <label for="selectFindOption">Znajdź zamówienia po</label>
+        </div>
+        <div>
+          <select id="selectFindOption" [(ngModel)]="findOption" (change)="changePage(0)">
+            <option value="all">Brak</option>
+            <option value="status">Statusie</option>
+            <option value="trackingCode">Kodzie zamówienia</option>
+          </select>
+        </div>
+      </div>
+    <div class="searchComponent">
+        <input type="text" [(ngModel)]="searchTerm" placeholder="Wyszukaj zamówienia" class="searchPlace">
+        <button (click)="search()">Szukaj</button>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <ng-container *ngFor="let order of displayedOrders">
+    <div class = "item">
+      <div class = "orderData">
+        Status : {{ order.status }},
+        Tracking code: {{ order.trackingCode }}
+      </div>
+      <div class = "editOrder">
+        <button (click)="openDetailsForm(order)">Detale</button>
+        <button (click)="openEditForm(order)">Edytuj zamówienie</button>
+        <button (click)="deleteOrder(order.id)">Usuń zamówienie</button>
+      </div>
+    </div>
+  </ng-container>
+</div>
+
+<div class="navigation">
+  <div class="page-item" [class.disabled]="currentPage === 0">
+    <button class="page-link" (click)="changePage(currentPage - 1)" [disabled]="currentPage === 0">Poprzednia</button>
+  </div>
+  <div class="page-item">
+    <button class="page-link">{{ currentPage + 1 }}</button>
+  </div>
+  <div class="page-item" [class.disabled]="currentPage === totalPages - 1">
+    <button class="page-link" (click)="changePage(currentPage + 1)" [disabled]="currentPage === totalPages - 1">Następna</button>
+  </div>
+</div>
+
+<div class="overlay" *ngIf="isDetailsFormOpen">
+  <app-order-details
+    [selectedOrder]="selectedOrder"
+    (formClosed)="closeDetailsForm()">
+  </app-order-details>
+</div>
+
+<div class="overlay" *ngIf="isEditFormOpen">
+  <app-edit-order-form
+    [selectedOrder]="selectedOrder"
+    (formSubmitted)="submitEditForm($event)"
+    (formClosed)="closeEditForm()"
+  ></app-edit-order-form>
+</div>
+
