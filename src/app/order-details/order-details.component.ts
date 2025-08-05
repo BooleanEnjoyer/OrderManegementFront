@@ -37,6 +37,7 @@ export class OrderDetailsComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    console.log(this.selectedOrder)
     this.id = this.selectedOrder.id;
     this.status = this.selectedOrder.status;
     this.trackingCode = this.selectedOrder.trackingCode;

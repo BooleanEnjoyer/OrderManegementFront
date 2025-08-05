@@ -9,10 +9,12 @@ import { ProductService } from '../service/product/product.service';
 })
 export class ProductFormComponent implements OnInit {
 
+  @Input() product: Product = {
+    id: '',
+    name: '',
+    price: 0
+  };
   @Input() isInUpdateMode!: boolean;
-  @Input() productId!: string;
-  @Input() productName!: string;
-  @Input() productPrice!: number;
   @Output() formSubmitted: EventEmitter<void> = new EventEmitter<void>();
   @Output() formClosed: EventEmitter<void> = new EventEmitter<void>();
 
@@ -27,18 +29,22 @@ export class ProductFormComponent implements OnInit {
     }
 
     const productData = {
-      id: this.productId,
-      name: this.productName,
-      price: this.productPrice
+      id: this.product.id,
+      name: this.product.name,
+      price: this.product.price
     };
 
     if (this.isInUpdateMode) {
-      
-      if (!this.productId) {
+
+      if (!this.product.id) {
         alert('Ktoś mógł usunąć twój produkt.');
         return;
       }
-
+      // if (!this.product.id) {
+      //   alert('Ktoś mógł usunąć twój produkt.');
+      //   return;
+      // }
+      console.log('PRODUCT DATA ' + productData)
       this.productService.updateProduct(productData).subscribe(response => {
         console.log('Produkt zmieniony pomyślnie', response);
         this.formSubmitted.emit();
@@ -56,11 +62,11 @@ export class ProductFormComponent implements OnInit {
   }
 
   private priceIsValid() {
-    return !this.productPrice || this.productPrice <= 0;
+    return !this.product.price || this.product.price <= 0;
   }
 
   private nameIsValid() {
-    return !this.productName;
+    return !this.product.name;
   }
 
   closeForm() {

@@ -50,9 +50,7 @@
 
 <app-product-form *ngIf="isFormOpen"
                   [isInUpdateMode]="isUpdating"
-                  [productId]="productId"
-                  [productName] = "productName"
-                  [productPrice] = "productPrice"
+                  [product]="product"
                   (formSubmitted)="handleFormSubmitted()"
                   (formClosed)="closeForm()">
 </app-product-form>

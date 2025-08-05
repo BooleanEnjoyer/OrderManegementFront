@@ -13,6 +13,7 @@ export class ProductManegeComponent implements OnInit {
 
   products: Product[] = [];
   displayedProducts: Product[] = [];
+  product: Product = { id: '', name: '', price: 0 };
   itemsPerPage = 10;
   currentPage = 0;
   totalPages = 0;
@@ -21,9 +22,6 @@ export class ProductManegeComponent implements OnInit {
   selectedSortOrder = 'asc';
   isFormOpen: boolean = false;
   isUpdating: boolean = false;
-  productId!: string;
-  productName!: string;
-  productPrice!: number;
 
   ngOnInit() {
     this.getProducts();
@@ -31,29 +29,26 @@ export class ProductManegeComponent implements OnInit {
 
   closeForm() {
     this.isFormOpen = false;
-    this.productId = '';
+    this.product.id = '';
     this.isUpdating = false;
   }
 
   openAddForm() {
     this.isUpdating = false;
-    this.productId = '';
-    this.productName = '';
-    this.productPrice = 0;
     this.isFormOpen = true;
   }
 
   openUpdateForm(product: Product) {
     this.isUpdating = true;
-    this.productId = product.id;
-    this.productName = product.name;
-    this.productPrice = product.price;
+    this.product.id = product.id;
+    this.product.name = product.name;
+    this.product.price = product.price;
     this.isFormOpen = true;
   }
 
   handleFormSubmitted() {
     this.isFormOpen = false;
-    this.productId = '';
+    this.product.id = '';
     this.isUpdating = false;
     this.getProducts();
   }

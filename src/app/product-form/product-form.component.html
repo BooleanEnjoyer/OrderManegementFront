@@ -3,11 +3,11 @@
     <h2>{{ isInUpdateMode ? 'Modyfikuj produkt' : 'Dodaj produkt' }}</h2>
     <form (submit)="submitForm()">
       <div class="fields">
-        <label for="productName">Nazwa produktu:</label>
-        <input type="text" id="productName" [value]="productName" (input)="productName = $any($event.target).value" required>
+        <label for="productNameProduct">Nazwa produktu:</label>
+        <input type="text" id="productNameProduct" [value]="product.name" (input)="product.name =$any($event.target).value" required>
 
-        <label for="productPrice">Cena produktu:</label>
-        <input type="number" id="productPrice" [value]="productPrice" (input)="productPrice =$any($event.target).valueAsNumber" required>
+        <label for="productPriceProduct">Cena produktu:</label>
+        <input type="number" id="productPriceProduct" [value]="product.price" (input)="product.price =$any($event.target).valueAsNumber" required>
       </div>
       <div class="button-container">
         <button type="submit">{{ isInUpdateMode ? 'Zmodyfikuj' : 'Dodaj' }}</button>
